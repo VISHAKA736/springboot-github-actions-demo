@@ -6,14 +6,15 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-```yaml
 name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -37,5 +38,5 @@ jobs:
         run: mvn -B package --file pom.xml
 
       - name: Update dependency graph
+        if: github.event_name == 'push'
         uses: advanced-security/maven-dependency-submission-action@v5
-```
